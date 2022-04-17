@@ -107,7 +107,6 @@ const CharacterCard: React.FC<ICharacterCardProps> = ({ character }) => {
         // eslint-disable-next-line no-await-in-loop
         const data = await getEpisode(episodeLinks[i]);
 
-        // setChapters([...chapters, data]);
         episodeData.push(data);
       }
       setEpisodes([...episodes, ...episodeData]);
