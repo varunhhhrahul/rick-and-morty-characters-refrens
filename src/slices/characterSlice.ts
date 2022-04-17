@@ -73,6 +73,7 @@ export const {
 
 export default characterSlice.reducer;
 
+// get characters with pagination
 export const getCharactersForPage =
   (page: number = 1): AppThunk =>
   async (dispatch, getState) => {

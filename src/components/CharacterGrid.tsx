@@ -22,6 +22,7 @@ import styles from "../assets/jss/pages/mainStyles";
 
 interface ICharacterGridProps {}
 
+// Wrapper to render the Character Card component in a grid
 export const CharacterGrid: React.FC<ICharacterGridProps> = (props) => {
   const dispatch = useDispatch();
 
@@ -52,6 +53,7 @@ export const CharacterGrid: React.FC<ICharacterGridProps> = (props) => {
     dispatch(setPage(value));
     setSearch("");
   };
+  // If there is an error, render this
   if (error) {
     return (
       <Box sx={styles.mainGrid}>
@@ -61,6 +63,7 @@ export const CharacterGrid: React.FC<ICharacterGridProps> = (props) => {
       </Box>
     );
   }
+  // If there are no errors render this
   return (
     <Box sx={styles.mainGrid}>
       <Typography
@@ -102,12 +105,14 @@ export const CharacterGrid: React.FC<ICharacterGridProps> = (props) => {
           />
         </div>
         {characters === null || filteredCharacters === null ? (
+          // If the characters are null, render a skeleton
           <Grid sx={{ ...styles.characterGrid, marginTop: -1 }}>
             {[1, 2, 3, 4, 5, 6, 7, 8].map((id: number) => (
               <SkeletonCharacterCard key={id} id={id} />
             ))}
           </Grid>
         ) : (
+          // If the characters are not null, render the characters
           <Grid sx={styles.characterGrid}>
             {filteredCharacters && filteredCharacters.length === 0 && (
               <div>No Character found! Try changing the name</div>

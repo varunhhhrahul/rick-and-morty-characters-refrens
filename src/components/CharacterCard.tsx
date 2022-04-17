@@ -48,6 +48,7 @@ const CharacterCard: React.FC<ICharacterCardProps> = ({ character }) => {
   const [moreChapters, setMoreChapters] = useState<Episode[]>([]);
   const [moreChapterLoading, setMoreChapterLoading] = useState(false);
 
+  // Get location for charater origin and current status
   const getLocations = async () => {
     try {
       setLocationLoading(true);
@@ -93,6 +94,7 @@ const CharacterCard: React.FC<ICharacterCardProps> = ({ character }) => {
       dispatch(setErrorMsg(`Page Error:  ${error.response.data.error}`));
     }
   };
+  // get data for episodes sent to function and set state
   const getEpisodeData = async (
     episodeLinks: string[],
     fromModal: boolean = false
