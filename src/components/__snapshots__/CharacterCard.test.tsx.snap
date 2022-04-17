@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CharacterCard should render correctly 1`] = `
+<div
+  className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-5abhjx-MuiPaper-root-MuiCard-root"
+>
+  <div
+    className="MuiBox-root css-0"
+  >
+    <div
+      className="MuiBox-root css-r3okx0"
+    >
+      <img
+        alt="Rick Sanchez"
+        className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-6mo23z-MuiCardMedia-root"
+        height="200"
+        src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+      />
+    </div>
+    <div
+      className="MuiCardContent-root css-b26uya-MuiCardContent-root"
+    >
+      <div
+        className="MuiBox-root css-vxgrp0"
+      >
+        <h6
+          className="MuiTypography-root MuiTypography-h6 css-4evpfe-MuiTypography-root"
+        >
+          Rick Sanchez
+        </h6>
+        <div
+          className="MuiBox-root css-0"
+        >
+          <h6
+            className="MuiTypography-root MuiTypography-h6 css-15ubpqm-MuiTypography-root"
+          >
+            <div
+              style={
+                Object {
+                  "backgroundColor": "green",
+                  "borderRadius": 50,
+                  "height": 10,
+                  "marginRight": 5,
+                  "width": 10,
+                }
+              }
+            />
+             
+            Alive
+          </h6>
+        </div>
+      </div>
+      <div
+        className="MuiBox-root css-vxgrp0"
+      >
+        <h6
+          className="MuiTypography-root MuiTypography-subtitle1 css-10wpov9-MuiTypography-root"
+        >
+          Human
+           - 
+          Male
+        </h6>
+      </div>
+      <div
+        className="MuiBox-root css-0"
+      >
+        <h6
+          className="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
+        >
+          Origin
+        </h6>
+        <span
+          className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1se7cm8-MuiSkeleton-root"
+          style={
+            Object {
+              "height": undefined,
+              "width": undefined,
+            }
+          }
+        />
+      </div>
+      <div
+        className="MuiBox-root css-0"
+      >
+        <h6
+          className="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
+        >
+          Current Location
+        </h6>
+        <span
+          className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1se7cm8-MuiSkeleton-root"
+          style={
+            Object {
+              "height": undefined,
+              "width": undefined,
+            }
+          }
+        />
+      </div>
+      <div
+        className="MuiBox-root css-0"
+      >
+        <div
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <h6
+            className="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
+          >
+            Episodes
+          </h6>
+        </div>
+        <br />
+        <span
+          className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-wave css-1se7cm8-MuiSkeleton-root"
+          style={
+            Object {
+              "height": undefined,
+              "width": undefined,
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
