@@ -1,9 +1,9 @@
-import { LOCATION } from "./../constants/index";
+import { LOCATION } from "../constants/index";
 import { API } from "./api";
 
-export const getLocation = async (id: number) => {
+export const getLocation = async (url: string) => {
   try {
-    const res = await API.get<Location>(`/${LOCATION}/${id}`);
+    const res = await API.get<Location | null>(url);
     return res.data;
   } catch (error) {
     throw error;

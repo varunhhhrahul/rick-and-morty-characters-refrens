@@ -1,6 +1,6 @@
-import { Character } from "./../constants/models/Character";
-import { Info } from "./../constants/models/Info";
-import { CHARACTER } from "./../constants/index";
+import { Character } from "../constants/models/Character";
+import { Info } from "../constants/models/Info";
+import { CHARACTER } from "../constants/index";
 import { API } from "./api";
 
 export const getCharactersForPage = async (page: number = 1) => {

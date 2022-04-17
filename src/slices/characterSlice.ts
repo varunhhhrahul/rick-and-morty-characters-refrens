@@ -1,5 +1,5 @@
-import { AppThunk } from "./../app/store";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AppThunk } from "../app/store";
 import { Character } from "../constants/models/Character";
 import { setErrorMsg } from "./alertSlice";
 import * as REQUESTS from "../api/characterRequests";
@@ -11,6 +11,7 @@ export interface characterState {
   character: Character | null;
   page: number;
   nextPage: number | null;
+  totalPages: number;
 }
 
 export const initialState: characterState = {
@@ -20,6 +21,7 @@ export const initialState: characterState = {
   character: null,
   page: 1,
   nextPage: null,
+  totalPages: 1,
 };
 
 const characterSlice = createSlice({
@@ -31,6 +33,9 @@ const characterSlice = createSlice({
     },
     setPage(state, action: PayloadAction<number>) {
       state.page = action.payload;
+    },
+    setTotalPages(state, action: PayloadAction<number>) {
+      state.totalPages = action.payload;
     },
     setNextPage(state, action: PayloadAction<number | null>) {
       state.nextPage = action.payload;
@@ -56,6 +61,7 @@ export const {
   setCharacters,
   filterCharacters,
   setPage,
+  setTotalPages,
   setNextPage,
 } = characterSlice.actions;
 
@@ -65,16 +71,20 @@ export const getCharactersForPage =
   (page: number = 1): AppThunk =>
   async (dispatch, getState) => {
     try {
+      dispatch(setLoading(true));
       const data = await REQUESTS.getCharactersForPage(page);
+      dispatch(setTotalPages(data.info.pages));
       if (data.info.next) {
         const nextPage = data.info.next.split("=")[1];
-        dispatch(setNextPage(parseInt(nextPage)));
+        dispatch(setNextPage(parseInt(nextPage, 10)));
       } else {
         dispatch(setNextPage(null));
       }
       dispatch(setCharacters(data.results));
+      dispatch(setLoading(false));
     } catch (error: any) {
       console.log(error);
+      dispatch(setLoading(false));
       if (error) {
         dispatch(setErrorMsg(error));
       }
