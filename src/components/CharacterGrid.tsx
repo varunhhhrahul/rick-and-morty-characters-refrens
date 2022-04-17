@@ -5,6 +5,7 @@ import {
   Stack,
   Grid,
   Pagination,
+  Typography,
 } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
@@ -24,7 +25,7 @@ interface ICharacterGridProps {}
 export const CharacterGrid: React.FC<ICharacterGridProps> = (props) => {
   const dispatch = useDispatch();
 
-  const { characters, page, nextPage, filteredCharacters, totalPages } =
+  const { characters, page, nextPage, filteredCharacters, totalPages, error } =
     useSelector((state: RootState) => {
       return {
         filteredCharacters: state.character.filteredCharacters,
@@ -32,6 +33,7 @@ export const CharacterGrid: React.FC<ICharacterGridProps> = (props) => {
         page: state.character.page,
         nextPage: state.character.nextPage,
         totalPages: state.character.totalPages,
+        error: state.character.error,
       };
     }, shallowEqual);
 
@@ -40,7 +42,7 @@ export const CharacterGrid: React.FC<ICharacterGridProps> = (props) => {
 
   useEffect(() => {
     dispatch(getCharactersForPage(page) as unknown as AnyAction);
-  }, [dispatch, page]);
+  }, [page]);
 
   useEffect(() => {
     if (filteredCharacters) dispatch(filterCharacters(search));
@@ -50,14 +52,31 @@ export const CharacterGrid: React.FC<ICharacterGridProps> = (props) => {
     dispatch(setPage(value));
     setSearch("");
   };
-
+  if (error) {
+    return (
+      <Box sx={styles.mainGrid}>
+        <Typography variant="h6" fontWeight="bold" flexWrap="wrap">
+          Oops! Some Error occurred
+        </Typography>
+      </Box>
+    );
+  }
   return (
     <Box sx={styles.mainGrid}>
+      <Typography
+        variant="h5"
+        fontWeight="bold"
+        flexWrap="wrap"
+        align="center"
+        gutterBottom
+        sx={{ marginBottom: "1rem" }}
+      >
+        Rick and Morty Characters
+      </Typography>
       <TextField
         id="outlined-password-input"
         label="Search"
         placeholder="Search for a character"
-        type="text"
         value={search}
         sx={{ width: "100%" }}
         onChange={(

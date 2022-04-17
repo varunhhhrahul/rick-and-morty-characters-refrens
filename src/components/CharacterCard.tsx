@@ -72,7 +72,7 @@ const CharacterCard: React.FC<ICharacterCardProps> = ({ character }) => {
         const currentLocationData = await getLocation(character.location.url);
 
         setCurrentLocation(
-          currentLocationData as SetStateAction<Location | null>
+          currentLocationData as unknown as SetStateAction<Location | null>
         );
       } else {
         setCurrentLocation({
@@ -87,10 +87,10 @@ const CharacterCard: React.FC<ICharacterCardProps> = ({ character }) => {
       }
 
       setLocationLoading(false);
-    } catch (e: any) {
-      console.log(e);
+    } catch (error: any) {
+      console.log(error);
       setLocationLoading(false);
-      // dispatch(setErrorMsg(e));
+      dispatch(setErrorMsg(`Page Error:  ${error.response.data.error}`));
     }
   };
   const getEpisodeData = async (
@@ -113,10 +113,10 @@ const CharacterCard: React.FC<ICharacterCardProps> = ({ character }) => {
       setEpisodes([...episodes, ...episodeData]);
 
       setLoading(false);
-    } catch (e: any) {
-      console.log(e);
+    } catch (error: any) {
+      console.log(error);
       setLoading(false);
-      // dispatch(setErrorMsg(e));
+      dispatch(setErrorMsg(error));
     }
   };
 
@@ -146,7 +146,6 @@ const CharacterCard: React.FC<ICharacterCardProps> = ({ character }) => {
 
         <CardContent sx={styles.cardContent}>
           <Box sx={styles.characterName}>
-            {/* <Link to={servicePageUrl}> */}
             <Typography
               variant="h6"
               fontWeight="bold"
@@ -155,7 +154,6 @@ const CharacterCard: React.FC<ICharacterCardProps> = ({ character }) => {
             >
               {character.name}
             </Typography>
-            {/* </Link> */}
             <Box>
               <Typography variant="h6" sx={styles.characterStatus}>
                 <div

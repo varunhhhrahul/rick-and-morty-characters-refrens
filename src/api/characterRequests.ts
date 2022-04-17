@@ -8,8 +8,9 @@ export const getCharactersForPage = async (page: number = 1) => {
     const res = await API.get<{ info: Info; results: Character[] }>(
       `/${CHARACTER}?page=${page}`
     );
+
     return res.data;
-  } catch (error) {
+  } catch (error: any) {
     throw error;
   }
 };

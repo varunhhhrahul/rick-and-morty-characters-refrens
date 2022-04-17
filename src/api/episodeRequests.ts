@@ -6,7 +6,7 @@ export const getEpisode = async (url: string) => {
   try {
     const res = await API.get<Episode>(url);
     return res.data;
-  } catch (error) {
+  } catch (error: any) {
     throw error;
   }
 };

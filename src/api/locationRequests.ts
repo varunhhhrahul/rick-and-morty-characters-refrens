@@ -5,7 +5,7 @@ export const getLocation = async (url: string) => {
   try {
     const res = await API.get<Location | null>(url);
     return res.data;
-  } catch (error) {
+  } catch (error: any) {
     throw error;
   }
 };

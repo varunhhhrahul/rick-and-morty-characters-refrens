@@ -12,6 +12,7 @@ export interface characterState {
   page: number;
   nextPage: number | null;
   totalPages: number;
+  error: boolean;
 }
 
 export const initialState: characterState = {
@@ -22,6 +23,7 @@ export const initialState: characterState = {
   page: 1,
   nextPage: null,
   totalPages: 1,
+  error: false,
 };
 
 const characterSlice = createSlice({
@@ -52,6 +54,9 @@ const characterSlice = createSlice({
         character.name.toLowerCase().includes(action.payload.toLowerCase())
       );
     },
+    setError(state, action: PayloadAction<boolean>) {
+      state.error = action.payload;
+    },
   },
 });
 
@@ -63,6 +68,7 @@ export const {
   setPage,
   setTotalPages,
   setNextPage,
+  setError,
 } = characterSlice.actions;
 
 export default characterSlice.reducer;
@@ -71,6 +77,7 @@ export const getCharactersForPage =
   (page: number = 1): AppThunk =>
   async (dispatch, getState) => {
     try {
+      dispatch(setError(false));
       dispatch(setLoading(true));
       const data = await REQUESTS.getCharactersForPage(page);
       dispatch(setTotalPages(data.info.pages));
@@ -83,10 +90,11 @@ export const getCharactersForPage =
       dispatch(setCharacters(data.results));
       dispatch(setLoading(false));
     } catch (error: any) {
-      console.log(error);
+      console.error("Error", error.response);
       dispatch(setLoading(false));
       if (error) {
-        dispatch(setErrorMsg(error));
+        dispatch(setError(true));
+        dispatch(setErrorMsg(`Page Error:  ${error.response.data.error}`));
       }
     }
   };
